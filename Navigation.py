@@ -57,7 +57,7 @@ def calculerLatitudePrime(lat1, angle, intervalle):
     
     return lat1 + ma.cos(angle) * intervalle * Q
 
-# Trace l'orthodromie et la loxodromie
+# Trace la loxodromie
 def tracerLoxodromie(long1, long2, lat1, lat2):
     
     if (abs(long1-long2) < 180):
@@ -70,7 +70,7 @@ def tracerLoxodromie(long1, long2, lat1, lat2):
             plt.plot([long1, long2-360], [lat1, lat2] , 'r-')
             plt.plot([long1+360, long2], [lat1, lat2] , 'r-')
 
-#Afficher les Indications
+# Afficher les Indications
 def donnerInformations(long1, long2):
     if(long1 == long2):
         print("\n\n L'orthodromie et la loxodromie se confondent dans la droite noire.")
@@ -109,8 +109,6 @@ if (longAdeg == longBdeg):
     
 else:
     
-
-    
     intervalle = 100
     
     capInitial = calculerCap(longA, longB, latA, latB, distanceInitiale)
@@ -144,7 +142,7 @@ else:
     plt.plot([ma.degrees(longPrime), longBdeg], [ma.degrees(latPrime), latBdeg] , 'g-')   
     tracerLoxodromie(longAdeg, longBdeg, latAdeg, latBdeg)
 
-#Placer les villes
+#Placer les points sur la carte
 plt.plot(longAdeg, latAdeg , 'ok', markersize=3)
 plt.plot(longBdeg, latBdeg , 'ok', markersize=3)
     
