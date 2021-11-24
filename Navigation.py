@@ -37,13 +37,12 @@ def calculerDistance(long1, long2, lat1, lat2):
     
     return ma.acos(ma.sin(lat1)*ma.sin(lat2) + ma.cos(lat1)*ma.cos(lat2)*ma.cos(long1-long2))
 
-# Retourne le cap entre 2 points
+# Retourne le cap 
 def calculerCap (long1, long2, lat1, lat2, d):
     
     v = (ma.sin(lat2) - ma.sin(lat1) * ma.cos(d))/(ma.cos(lat1) * ma.sin(d))
     x = ma.acos(v)
-    if ((long1 < long2) & (abs(ma.degrees(long1)-ma.degrees(long2)) < 180)) | \
-        ((long1 > long2) & (abs(ma.degrees(long1)-ma.degrees(long2)) > 180)) :
+    if ((long1 < long2) & (abs(ma.degrees(long1)-ma.degrees(long2)) < 180)) | ((long1 > long2) & (abs(ma.degrees(long1)-ma.degrees(long2)) > 180)) :
         return x
     else:
         return 2*ma.pi - x
@@ -70,7 +69,7 @@ def tracerLoxodromie(long1, long2, lat1, lat2):
             plt.plot([long1, long2-360], [lat1, lat2] , 'r-')
             plt.plot([long1+360, long2], [lat1, lat2] , 'r-')
 
-# Afficher les Indications
+#Afficher les Indications
 def donnerInformations(long1, long2):
     if(long1 == long2):
         print("\n\n L'orthodromie et la loxodromie se confondent dans la droite noire.")
@@ -109,6 +108,8 @@ if (longAdeg == longBdeg):
     
 else:
     
+
+    
     intervalle = 100
     
     capInitial = calculerCap(longA, longB, latA, latB, distanceInitiale)
@@ -142,7 +143,7 @@ else:
     plt.plot([ma.degrees(longPrime), longBdeg], [ma.degrees(latPrime), latBdeg] , 'g-')   
     tracerLoxodromie(longAdeg, longBdeg, latAdeg, latBdeg)
 
-#Placer les points sur la carte
+#Placer les villes
 plt.plot(longAdeg, latAdeg , 'ok', markersize=3)
 plt.plot(longBdeg, latBdeg , 'ok', markersize=3)
     
